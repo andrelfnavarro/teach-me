@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Home } from './components/home/home';
 
 export const App: React.FC = () => {
