@@ -1,3 +1,4 @@
+import { Link as RouterLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { Colors, FontFamily, FontSize, FontWeight } from './constants';
 
@@ -13,6 +14,12 @@ export const H2 = styled.h2`
   font-size: ${FontSize.XLarge};
   font-weight: ${FontWeight.Regular};
 `;
+export const H3 = styled.h3`
+  font-family: ${FontFamily};
+  color: ${Colors.XXDark};
+  font-size: ${FontSize.Large};
+  font-weight: ${FontWeight.Regular};
+`;
 
 export const Body = styled.body`
   font-family: ${FontFamily};
@@ -22,6 +29,13 @@ export const Body = styled.body`
 `;
 
 export const DD = styled.p`
+  font-family: ${FontFamily};
+  color: ${Colors.XXDark};
+  font-size: ${FontSize.XSmall};
+  font-weight: ${FontWeight.Regular};
+`;
+
+export const Link = styled(RouterLink)`
   font-family: ${FontFamily};
   color: ${Colors.XXDark};
   font-size: ${FontSize.XSmall};

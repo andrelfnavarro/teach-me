@@ -1,12 +1,8 @@
 import React from 'react';
-import { Col, Row } from 'react-flexbox-grid';
-import { Button } from 'src/atomic/atm/button/button';
 import { H1, H2, Body, DD } from 'src/typography';
 import { ENGINEERING_COURSES, MEDICINE_COURSES, LAW_COURSES } from './home-courses';
-import { HomeHeaderIcon } from './home-header-icon';
 import {
   HomeGreen,
-  HomeNavWrapper,
   HomeWrapper,
   HomeTextWrapper,
   HomeWhite,
@@ -14,7 +10,6 @@ import {
   HomeWhiteBodyWrapper,
   HomeRoot,
   HomeWhiteListWrapper,
-  HomeButtonWrapper,
   HomeWhiteListItemWrapper,
   HomeGray,
   HomeGrayLogoWrapper,
@@ -25,26 +20,15 @@ import unicampLogo from 'src/assets/unicamp.png';
 import espmLogo from 'src/assets/espm.png';
 import fgvLogo from 'src/assets/fgv.png';
 import { Spacing } from 'src/constants';
-import { Link } from 'react-router-dom';
+import { Col, Row } from 'react-styled-flexboxgrid';
+import { Header } from 'src/atomic/org/header/header';
 
 export const Home: React.FC = () => {
   return (
     <HomeRoot>
       <HomeGreen>
         <HomeWrapper>
-          <HomeNavWrapper>
-            <HomeHeaderIcon />
-            <HomeButtonWrapper>
-              <Link to='/about'>
-                <Button theme='primary' bold>
-                  Entrar
-                </Button>
-              </Link>
-              <Button theme='secondary' bold>
-                Cadastrar
-              </Button>
-            </HomeButtonWrapper>
-          </HomeNavWrapper>
+          <Header />
           <HomeTextWrapper>
             <H1>De estudantes para estudantes</H1>
           </HomeTextWrapper>

@@ -54,12 +54,6 @@ export const HomeWhiteListItemWrapper = styled.div`
   justify-content: space-between;
 `;
 
-export const HomeButtonWrapper = styled.div`
-  width: 250px;
-  display: flex;
-  justify-content: space-between;
-`;
-
 export const HomeWhiteCoursesWrapper = styled.div`
   height: 100%;
   display: flex;
@@ -81,12 +75,4 @@ export const HomeWhiteBodyWrapper = styled.div`
 export const HomeTextWrapper = styled.div`
   width: 500px;
   padding-left: 12%;
-`;
-
-export const HomeNavWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-  align-items: center;
-  width: 100%;
 `;

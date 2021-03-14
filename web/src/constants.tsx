@@ -2,6 +2,7 @@ export const Colors = {
   Primary: '#0CA789',
   Secondary: '#FFFFFF',
   XXDark: '#0D0D0D',
+  Gray: '#DFDFE3',
 };
 
 export const Spacing = {
@@ -27,7 +28,9 @@ export const FontSize = {
 };
 
 export const BorderRadii = {
-  Regular: '4px',
+  Small: '8px',
+  Medium: '16px',
+  Large: '24px',
 };
 
 export const FontWeight = {
