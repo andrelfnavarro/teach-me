@@ -21,14 +21,12 @@ import espmLogo from 'src/assets/espm.png';
 import fgvLogo from 'src/assets/fgv.png';
 import { Spacing } from 'src/constants';
 import { Col, Row } from 'react-styled-flexboxgrid';
-import { Header } from 'src/atomic/org/header/header';
 
 export const Home: React.FC = () => {
   return (
     <HomeRoot>
       <HomeGreen>
         <HomeWrapper>
-          <Header />
           <HomeTextWrapper>
             <H1>De estudantes para estudantes</H1>
           </HomeTextWrapper>

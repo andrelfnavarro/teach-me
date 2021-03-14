@@ -9,6 +9,7 @@ export const TextInputStyled = styled.input`
   background-color: ${Colors.Gray};
   border-color: ${Colors.Gray};
   padding: ${Spacing.XXSmall} ${Spacing.Small};
+
   &: focus {
     outline-width: 0;
   }

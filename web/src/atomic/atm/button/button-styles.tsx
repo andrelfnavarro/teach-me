@@ -14,10 +14,13 @@ export const StyledButton = styled.button<ButtonProps>`
   font-weight: ${(props) => (props.bold ? FontWeight.Bold : FontWeight.Regular)};
   font-family: ${FontFamily}
   border-width: 2px;
+  margin-right: ${Spacing.XXSmall};
+  margin-left: ${Spacing.XXSmall};
   border-style: solid;
   padding: ${Spacing.XSmall} ${Spacing.Medium};
-
+  transition: all .2s ease-in-out;
   &:hover  {
     cursor: pointer;
+    transform: scale(1.05);
   }
 `;

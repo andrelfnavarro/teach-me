@@ -2,7 +2,11 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Home } from './components/home/home';
 import { Login } from './components/login/login';
+import { Signup } from './components/signup/signup';
 import { ThemeProvider } from 'styled-components';
+import { Header } from './atomic/org/header/header';
+import { AppWrapper } from './App-styles';
+import { Discover } from './components/discover/discover';
 
 const theme = {
   flexboxgrid: {
@@ -23,21 +27,28 @@ const theme = {
     },
   },
 };
+
 export const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <Router>
-        <Switch>
-          <Route path='/about'>
-            <h1>ABOUT</h1>
-          </Route>
-          <Route path='/login'>
-            <Login />
-          </Route>
-          <Route path='/'>
-            <Home />
-          </Route>
-        </Switch>
+        <Header />
+        <AppWrapper>
+          <Switch>
+            <Route path='/discover'>
+              <Discover />
+            </Route>
+            <Route path='/login'>
+              <Login />
+            </Route>
+            <Route path='/signup'>
+              <Signup />
+            </Route>
+            <Route path='/'>
+              <Home />
+            </Route>
+          </Switch>
+        </AppWrapper>
       </Router>
     </ThemeProvider>
   );

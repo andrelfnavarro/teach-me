@@ -14,10 +14,17 @@ export const H2 = styled.h2`
   font-size: ${FontSize.XLarge};
   font-weight: ${FontWeight.Regular};
 `;
+
 export const H3 = styled.h3`
   font-family: ${FontFamily};
   color: ${Colors.XXDark};
   font-size: ${FontSize.Large};
+  font-weight: ${FontWeight.Regular};
+`;
+export const H4 = styled.h3`
+  font-family: ${FontFamily};
+  color: ${Colors.XXDark};
+  font-size: ${FontSize.Small};
   font-weight: ${FontWeight.Regular};
 `;
 
@@ -40,4 +47,9 @@ export const Link = styled(RouterLink)`
   color: ${Colors.XXDark};
   font-size: ${FontSize.XSmall};
   font-weight: ${FontWeight.Regular};
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    color: ${Colors.Primary};
+  }
 `;

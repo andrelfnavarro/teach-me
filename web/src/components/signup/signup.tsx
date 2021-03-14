@@ -4,10 +4,11 @@ import { Button } from 'src/atomic/atm/button/button';
 import { Frame } from 'src/atomic/atm/frame/frame';
 import { TextInput } from 'src/atomic/atm/text-input/text-input';
 import { Spacing } from 'src/constants';
-import { H3, Link } from 'src/typography';
-import { LoginWrapper } from './login-styles';
+import { H3 } from 'src/typography';
+import { LoginWrapper } from './signup-styles';
 import { Link as RouterLink } from 'react-router-dom';
-export const Login: React.FC = () => {
+
+export const Signup: React.FC = () => {
   const [email, setEmail] = React.useState(null);
   const [password, setPassword] = React.useState(null);
 
@@ -16,7 +17,7 @@ export const Login: React.FC = () => {
       <Frame>
         <Row>
           <Col xs={12}>
-            <H3>Faça login:</H3>
+            <H3>Cadastre-se:</H3>
           </Col>
         </Row>
         <Row style={{ marginBottom: Spacing.XSmall }} center='xs'>
@@ -30,7 +31,7 @@ export const Login: React.FC = () => {
           </Col>
         </Row>
         <Row style={{ marginBottom: Spacing.XSmall }} center='xs'>
-          <Col xs={12}>
+          <Col xs={6}>
             <TextInput
               type='password'
               onChange={(event) => {
@@ -39,16 +40,22 @@ export const Login: React.FC = () => {
               placeholder='Senha'
             />
           </Col>
+          <Col xs={6}>
+            <TextInput
+              type='password'
+              onChange={(event) => {
+                setPassword(event.target.value);
+              }}
+              placeholder='Confirme a senha'
+            />
+          </Col>
         </Row>
         <Row style={{ marginBottom: Spacing.XSmall }} center='xs'>
           <RouterLink to='discover'>
             <Button theme='primary' bold>
-              Entrar
+              Criar conta
             </Button>
           </RouterLink>
-        </Row>
-        <Row center='xs'>
-          <Link to='/'>Esqueceu sua senha?</Link>
         </Row>
       </Frame>
     </LoginWrapper>
