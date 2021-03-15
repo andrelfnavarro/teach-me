@@ -4,10 +4,13 @@ import './index.css';
 import { App } from './App';
 import reportWebVitals from './reportWebVitals';
 import * as types from 'styled-components/cssprop';
+import { UserProvider } from './userContext';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <UserProvider>
+      <App />
+    </UserProvider>
   </React.StrictMode>,
   document.getElementById('root'),
 );

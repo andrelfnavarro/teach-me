@@ -24,7 +24,7 @@ export const HomeWhite = styled.div`
 `;
 
 export const HomeGray = styled.div`
-  background-color: rgba(215, 215, 215, 0.43);
+  background-color: ${Colors.LightGray};
   min-height: 50vh;
   width: 100vw;
 `;
@@ -74,5 +74,6 @@ export const HomeWhiteBodyWrapper = styled.div`
 
 export const HomeTextWrapper = styled.div`
   width: 500px;
+
   padding-left: 12%;
 `;

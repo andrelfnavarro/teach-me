@@ -3,6 +3,7 @@ export const Colors = {
   Secondary: '#FFFFFF',
   XXDark: '#0D0D0D',
   Gray: '#DFDFE3',
+  LightGray: '#d7d7d7',
 };
 
 export const Spacing = {
@@ -34,7 +35,7 @@ export const BorderRadii = {
 };
 
 export const FontWeight = {
-  Regular: 'regular',
-  Bold: 'bold',
+  Regular: 400,
+  Bold: 700,
   ExtraBold: 900,
 };

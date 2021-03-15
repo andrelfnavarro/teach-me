@@ -23,11 +23,11 @@ export const DISCOVER_ITEMS = [
     quote: 'Aulas práticas de estudo do corpo humano 😉',
     price: '37.99',
     grade: 4.7,
-    userInfo: { name: 'Guilherme Zorzon', university: 'FSP USP', degree: 'Medicina', avatar: avatar3 },
+    userInfo: { name: 'Paulo de Paula', university: 'FSP USP', degree: 'Medicina', avatar: avatar3 },
   },
   {
     title: 'Direito Penal',
-    quote: 'Quer aprender a base do Direito Penal? Cola aí!',
+    quote: 'Caso de assédio no ambiente de trabalho? Quer aprender a base do Direito Penal? Cola aí!',
     price: '25.90',
     grade: 2.5,
     userInfo: { name: 'Alex Donutbrisa', university: 'FFLCH', degree: 'Filosofia', avatar: avatar2 },

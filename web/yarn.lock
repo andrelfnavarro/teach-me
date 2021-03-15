@@ -9429,6 +9429,11 @@ react-scripts@4.0.1:
   optionalDependencies:
     fsevents "^2.1.3"
 
+react-simple-matchmedia@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/react-simple-matchmedia/-/react-simple-matchmedia-3.1.0.tgz#e530f7f50562a98720f11cfac71c9e1de4ae5219"
+  integrity sha512-RXH+O2SxKLmM10I4ep5iyvDy9XZqIa7q10GAACDI64kWcP06rKoTHo5Yeki1XbUNVUjhMb0P3ZYCkaE3TKKp9Q==
+
 react-styled-flexboxgrid@^3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/react-styled-flexboxgrid/-/react-styled-flexboxgrid-3.2.1.tgz#78b87c9dcf6e4f146e4a305668e894be8fa4f679"

@@ -21,6 +21,8 @@ import espmLogo from 'src/assets/espm.png';
 import fgvLogo from 'src/assets/fgv.png';
 import { Spacing } from 'src/constants';
 import { Col, Row } from 'react-styled-flexboxgrid';
+import { Button } from 'src/atomic/atm/button/button';
+import { Link } from 'react-router-dom';
 
 export const Home: React.FC = () => {
   return (
@@ -29,6 +31,11 @@ export const Home: React.FC = () => {
         <HomeWrapper>
           <HomeTextWrapper>
             <H1>De estudantes para estudantes</H1>
+            <Link to='/discover'>
+              <Button bold theme='primary'>
+                Explorar
+              </Button>
+            </Link>
           </HomeTextWrapper>
         </HomeWrapper>
       </HomeGreen>

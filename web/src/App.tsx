@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Home } from './components/home/home';
 import { Login } from './components/login/login';
@@ -7,6 +7,7 @@ import { ThemeProvider } from 'styled-components';
 import { Header } from './atomic/org/header/header';
 import { AppWrapper } from './App-styles';
 import { Discover } from './components/discover/discover';
+import { UserContext } from './userContext';
 
 const theme = {
   flexboxgrid: {
@@ -29,11 +30,14 @@ const theme = {
 };
 
 export const App: React.FC = () => {
+  const user = useContext(UserContext);
+  const logged = !!user?.name && !!user?.profession;
+
   return (
     <ThemeProvider theme={theme}>
       <Router>
-        <Header />
-        <AppWrapper>
+        <Header logged={logged} user={user} />
+        <AppWrapper logged={logged}>
           <Switch>
             <Route path='/discover'>
               <Discover />
