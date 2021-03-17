@@ -11,6 +11,7 @@ export const HomeGreen = styled.div`
     background-image: url(${studentImage});
     background-repeat: no-repeat;
     background-position: 82% 100%;
+    background-size: contain;
   }
 `;
 

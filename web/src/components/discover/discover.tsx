@@ -8,7 +8,7 @@ import { DISCOVER_ITEMS } from './discover-items';
 
 export const Discover = () => {
   return (
-    <Grid fluid>
+    <div style={{ overflowX: 'hidden', overflowY: 'hidden' }}>
       <Row style={{ marginBottom: Spacing.Small }}>
         <Col xsOffset={3} xs={10} md={12}>
           <H2>Qual curso você procura?</H2>
@@ -25,6 +25,6 @@ export const Discover = () => {
           </Row>
         </Col>
       </Row>
-    </Grid>
+    </div>
   );
 };

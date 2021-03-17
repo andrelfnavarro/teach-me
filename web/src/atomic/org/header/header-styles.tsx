@@ -1,4 +1,4 @@
-import { Colors, FontSize, FontWeight, Spacing } from 'src/constants';
+import { Colors, Spacing } from 'src/constants';
 import styled from 'styled-components';
 import { HeaderProps } from './header';
 
