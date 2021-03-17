@@ -25,7 +25,7 @@ export const Header: React.FC<HeaderProps> = (props: HeaderProps) => {
           <img src={userAvatar} width={72} height={72} />
           <div style={{ marginLeft: Spacing.XLarge }}>
             <H3 style={{ marginBottom: '-' + Spacing.Small }}>Olá, {props.user.name.split(' ')[0]}</H3>
-            <DD>O que iremos ensinar hoje?</DD>
+            <DD>O que iremos aprender hoje?</DD>
           </div>
         </div>
       ) : (
