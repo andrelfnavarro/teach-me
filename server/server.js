@@ -6,7 +6,7 @@ const cors = require('cors');
 require('dotenv').config();
 
 const uri = process.env.teach_mongo_connection_uri;
-mongoose.connect('mongodb+srv://GuilhermeZ:LabSoftRisco@teachme.zjmut.mongodb.net/teach-me', { 
+mongoose.connect(uri, { 
         useNewUrlParser: true, 
         useUnifiedTopology: true, 
         useCreateIndex: true,
