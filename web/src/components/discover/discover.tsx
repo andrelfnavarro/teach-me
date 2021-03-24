@@ -5,6 +5,7 @@ import axios from 'axios';
 
 import { H2 } from 'src/typography';
 import { DiscoverItem } from './discover-item';
+import { MultiSelect } from '../select/multi-select';
 import { DISCOVER_ITEMS } from './discover-items';
 
 type Props = {
@@ -13,8 +14,15 @@ type Props = {
 
 type State = {
   discoverItems: CourseObject[];
+  filteredItems: FilterObject[];
+  filterItemsOptions: FilterObject[];
   loaded: boolean;
 };
+
+type FilterObject = {
+  label?: string;
+  value?: string;
+}
 
 type CourseObjectContainer = {
   data: CourseObject[];
@@ -38,29 +46,78 @@ type UserInfoObject = {
 export class Discover extends React.Component<Props, State> {
   state: State = {
     discoverItems: [],
+    filteredItems: [],
+    filterItemsOptions: [],
     loaded: false
   };
 
   componentDidMount() {
-    this.getExpenses();
+    this.getDiscoverItems();
   }
 
-
-  async getExpenses() {
-    const parameters = {};
+  async getDiscoverItems(e: any = undefined) {
+    console.log('CALLING ME');
+    let filtersToUse: any = e;
+    if(e == undefined) {
+      filtersToUse = this.state.filteredItems;
+    }
+    const parameters = {
+      titles: this.getValues(filtersToUse)
+    };
+    console.log('new', parameters);
     
-    const coursesDataContainer: CourseObjectContainer = await axios.get('http://localhost:5000/api/courses/all',
+    const coursesDataContainer: CourseObjectContainer = await axios.get('http://localhost:5000/api/courses/title',
+      { 
+        params: parameters
+      }
+    );
+    
+    const ItemsOptionsContainer: CourseObjectContainer = await axios.get('http://localhost:5000/api/courses/all',
       { 
         params: parameters
       }
     );
 
     const coursesData: CourseObject[] = coursesDataContainer.data;
-
-    this.setState({
-      discoverItems: coursesData,
-      loaded: true
+    const ItemsOptions: CourseObject[] = ItemsOptionsContainer.data;
+      
+    const seenFilteredItems = new Set();
+    const undefinedIndexes: Array<any> = [];
+    const filterItemsOptions: Array<any> = ItemsOptions.map((item, index) => {
+      if(seenFilteredItems.has(item.title) === false) {
+        seenFilteredItems.add(item.title);
+        return {label: item.title, value: item.title};
+      } else {
+        undefinedIndexes.unshift(index);
+      }
     });
+
+    undefinedIndexes.forEach(index => {
+      filterItemsOptions.splice(index, 1);
+    });
+
+    if(e == undefined) {
+      this.setState({
+        discoverItems: coursesData,
+        filterItemsOptions: filterItemsOptions,
+        loaded: true
+      });
+    } else {
+      this.setState({
+        discoverItems: coursesData,
+        filterItemsOptions: filterItemsOptions,
+        loaded: true,
+        filteredItems: e
+      });
+    }
+  }
+
+  getValues(items: FilterObject[]) {
+    const itemsValues: Array<any> = items.map(item => {
+      return item.value;
+    });
+
+    return itemsValues;
   }
 
   render() {
@@ -68,8 +125,21 @@ export class Discover extends React.Component<Props, State> {
       return (
         <div style={{ overflowX: 'hidden', overflowY: 'hidden' }}>
           <Row style={{ marginBottom: Spacing.Small }}>
-            <Col xsOffset={3} xs={10} md={12}>
+            <Col xsOffset={3} xs={10} md={12} style={{ marginBottom: Spacing.Small }}>
               <H2>Qual curso você procura?</H2>
+            </Col>
+            <Col xsOffset={3} xs={3} md={5}>
+              <MultiSelect
+                placeholder={'Filtre cursos por nome!'}
+                value={this.state.filteredItems}
+                options={this.state.filterItemsOptions}
+                isMulti={true}
+                isDisabled={false}
+                onChange={(e: any) => {
+                  this.getDiscoverItems(e);
+                }
+                }
+              />
             </Col>
           </Row>
           <Row center='xs'>
@@ -86,7 +156,7 @@ export class Discover extends React.Component<Props, State> {
         </div>
       );
     } else {
-      return <div>loading</div>;
+      return <div></div>;
     }
   }
 }

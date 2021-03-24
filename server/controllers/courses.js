@@ -1,43 +1,48 @@
 const mongoose = require('mongoose');
 const CoursesSchema = require('../models/Courses');
 
+function getMatchClause(titles) {
+    if(titles.length != undefined && titles.length > 0) {
+        return {
+            'title': { $in: titles}
+        }
+    }
+    else {
+        return 
+    }
+}
+
 module.exports = {
 
-    // findCourses: async (req, res, next) => {
+    // findCoursesByTitle: async (req, res, next) => {
     //     console.log('CoursesController.findCourses() called!');
     //     console.log('req query', req.query)
     //     let Course = mongoose.model('course', CoursesSchema)
 
-    //     let crewIds = []
-    //     for(crewId in req.query.crewIds) { 
-    //         crewIds.push(Number(req.query.crewIds[crewId]))
-    //     }
-
-    //     let userIds = []
-    //     for(userId in req.query.userIds) { 
-    //         userIds.push(Number(req.query.userIds[userId]))
-    //     }
+        // let titles = []
+        // if(req.query.titles != '{}') {
+        //     for(index in req.query.titles) { 
+        //         titles.push(req.query.titles[index])
+        //     }    
+        // }
+        
+        // const matchClause = getMatchClause(titles)
 
     //     Course.aggregate([
-    //         {$match: 
-    //             {
-    //                 'crewId': {  $in: crewIds },
-    //                 'userId': {  $in: userIds },
-    //             }
-    //         },
+    //         {$match: matchClause },
     //         {
     //             $group: {
-    //                 '_id': { 'userId': '$userId' }, 
-    //                 'crewId': { $first: '$crewId' },
-    //                 'userId': { $first: '$userId' },
-    //                 'name': { $first: '$name' },
-    //                 'image': { $first: '$image' },
+    //                 '_id':  '$_id' , 
+    //                 'grade': { $first: '$grade' },
+    //                 'price': { $first: '$price' },
+    //                 'quote': { $first: '$quote' },
+    //                 'title': { $first: '$title' },
+    //                 'userInfo': { $first: '$userInfo' },
     //             }
     //         }
     //     ], function(err, result) {
     //         console.log(result[0])
-    //         res.json({result});
-    //         return result;
+    //         res.json(result);
     //     });
 	// },
 
@@ -50,8 +55,32 @@ module.exports = {
             console.log(result[0])
             res.json(result); 
         });
-    },
-		
+    },	
+
+    findCoursesByTitle: async (req, res, next) => {
+        console.log('CoursesController.findAllCourses() called!');
+        console.log('req query', req.query)
+        let Course = mongoose.model('courses', CoursesSchema)
+
+        let titles = []
+        if(req.query.titles != '{}') {
+            for(index in req.query.titles) { 
+                titles.push(req.query.titles[index])
+            }    
+        }
+        
+        const matchClause = getMatchClause(titles)
+        let finalFind = {}
+        if(matchClause != undefined) {
+            finalFind = matchClause
+        }
+        console.log(finalFind)
+
+        Course.find(finalFind, function(err, result) {
+            console.log(result[0])
+            res.json(result); 
+        });
+    },	
 	
     // createCourses: async (req, res, next) => {
     //     console.log('CoursesController.createCourses() called!');

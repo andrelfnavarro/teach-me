@@ -18,6 +18,9 @@ const CoursesController = require('../controllers/courses');
 router.route('/')
     .delete(CoursesController.deleteCourses);
 
+router.route('/title')
+    .get(CoursesController.findCoursesByTitle);
+
 router.route('/all')
     .get(CoursesController.findAllCourses);
 
