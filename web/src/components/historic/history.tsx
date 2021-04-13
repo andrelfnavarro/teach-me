@@ -3,10 +3,10 @@ import { Col, Grid, Row } from 'react-styled-flexboxgrid';
 import { Spacing } from 'src/constants';
 import axios from 'axios';
 
-import { H2 } from 'src/typography';
-import { DiscoverItem } from './discover-item';
+import { H2 } from 'src/typography'; 
+import { DiscoverItem } from './history-item';
 import { MultiSelect } from '../select/multi-select';
-import { DISCOVER_ITEMS } from './discover-items';
+import { DISCOVER_ITEMS } from './history-items';
 
 type Props = {
   

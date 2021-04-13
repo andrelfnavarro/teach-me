@@ -7,7 +7,6 @@ import avatar1 from 'src/assets/avatar1.png';
 import avatar2 from 'src/assets/avatar2.png';
 import avatar3 from 'src/assets/avatar3.png';
 import avatar4 from 'src/assets/avatar4.png';
-import avatar5 from 'src/assets/avatar5.png';
 
 interface DiscoverItemProps {
   course: CourseObject;
@@ -39,8 +38,7 @@ export const DiscoverItem: React.FC<DiscoverItemProps> = (props: DiscoverItemPro
     'avatar1': avatar1,
     'avatar2': avatar2,
     'avatar3': avatar3,
-    'avatar4': avatar4,  
-    'avatar5': avatar5  
+    'avatar4': avatar4  
   };
   
   return (

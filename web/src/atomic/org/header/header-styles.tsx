@@ -16,7 +16,7 @@ export const HeaderNavWrapper = styled.div<HeaderProps>`
 `;
 
 export const HeaderButtonWrapper = styled.div<HeaderProps>`
-  max-width: 250px;
+  max-width: 500px;
   display: flex;
   justify-content: space-between;
 `;

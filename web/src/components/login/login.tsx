@@ -1,18 +1,15 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Col, Row } from 'react-styled-flexboxgrid';
-import { Button } from 'src/atomic/atm/button/button';
 import { Frame } from 'src/atomic/atm/frame/frame';
 import { TextInput } from 'src/atomic/atm/text-input/text-input';
 import { Spacing } from 'src/constants';
 import { H3, Link } from 'src/typography';
 import { LoginWrapper } from './login-styles';
-import { Link as RouterLink } from 'react-router-dom';
-import { UserContext } from 'src/userContext';
+import { ConditionalLink } from '../conditional-link/conditional-link';
 export const Login: React.FC = () => {
-  const user = useContext(UserContext);
 
-  const [email, setEmail] = React.useState(null);
-  const [password, setPassword] = React.useState(null);
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
 
   return (
     <LoginWrapper>
@@ -46,18 +43,12 @@ export const Login: React.FC = () => {
               </Col>
             </Row>
             <Row style={{ marginBottom: Spacing.XSmall }} center='xs'>
-              <RouterLink to='discover'>
-                <Button
-                  onClick={() => {
-                    user?.setName('Rafael Rahal');
-                    user?.setProfession('Engenharia da Computação');
-                  }}
-                  theme='primary'
-                  bold
-                >
-                  Entrar
-                </Button>
-              </RouterLink>
+              <ConditionalLink 
+                placeholder="Entrar"
+                userName={email}
+                password={password}
+              >
+              </ConditionalLink>
             </Row>
             <Row center='xs'>
               <Link to='/'>Esqueceu sua senha?</Link>

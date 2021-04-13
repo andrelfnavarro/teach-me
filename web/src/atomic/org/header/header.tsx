@@ -5,7 +5,7 @@ import { HomeHeaderIcon } from 'src/components/home/home-header-icon';
 import { Breakpoint, useMedia } from 'src/utils/match-media';
 import { HeaderButtonWrapper, HeaderNavWrapper } from './header-styles';
 import { useLocation } from 'react-router-dom';
-import userAvatar from 'src/assets/avatar-user.png';
+import userAvatar from 'src/assets/avatar5.png';
 import { Spacing } from 'src/constants';
 import { H3, DD, Link } from 'src/typography';
 
@@ -53,7 +53,9 @@ export const Header: React.FC<HeaderProps> = (props: HeaderProps) => {
         </HeaderButtonWrapper>
       ) : (
         <HeaderButtonWrapper>
+          <Link to='/discover'>Procurar cursos</Link>
           <Link to='/discover'>Meus cursos</Link>
+          <Link to='/discover'>Histórico de compras</Link>
           <Link onClick={props.user.logout} to='/'>
             Sair
           </Link>

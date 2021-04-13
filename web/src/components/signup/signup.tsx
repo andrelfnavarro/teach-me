@@ -114,7 +114,7 @@ export const Signup: React.FC = () => {
             </Row>
 
             <Row style={{ marginBottom: Spacing.XSmall }} center='xs'>
-              <RouterLink to='discover'>
+              <RouterLink to='login'>
                 <Button theme='primary' bold>
                   Criar conta
                 </Button>

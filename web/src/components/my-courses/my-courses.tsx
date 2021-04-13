@@ -4,9 +4,9 @@ import { Spacing } from 'src/constants';
 import axios from 'axios';
 
 import { H2 } from 'src/typography';
-import { DiscoverItem } from './discover-item';
+import { DiscoverItem } from './my-courses-item';
 import { MultiSelect } from '../select/multi-select';
-import { DISCOVER_ITEMS } from './discover-items';
+import { DISCOVER_ITEMS } from './my-courses-items';
 
 type Props = {
   
@@ -56,6 +56,7 @@ export class Discover extends React.Component<Props, State> {
   }
 
   async getDiscoverItems(e: any = undefined) {
+    console.log('CALLING ME');
     let filtersToUse: any = e;
     if(e == undefined) {
       filtersToUse = this.state.filteredItems;
