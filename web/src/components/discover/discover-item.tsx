@@ -1,14 +1,46 @@
-import React from 'react';
+import React, { JSXElementConstructor } from 'react';
 import { Button } from 'src/atomic/atm/button/button';
 import { FlatBottomFrame, FlatTopFrame } from 'src/atomic/atm/frame/frame';
 import { Spacing } from 'src/constants';
 import { H3, Body, DD, H4 } from 'src/typography';
+import avatar1 from 'src/assets/avatar1.png';
+import avatar2 from 'src/assets/avatar2.png';
+import avatar3 from 'src/assets/avatar3.png';
+import avatar4 from 'src/assets/avatar4.png';
 
 interface DiscoverItemProps {
-  course: any;
+  course: CourseObject;
 }
+
+type CourseObject = {
+  title: string;
+  quote: string;
+  price: number;
+  grade: number;
+  userInfo: UserInfoObject 
+}
+
+type UserInfoObject = {
+  name: string;
+  university: string;
+  degree: string;
+  avatar: string
+}
+
+type AvatarsMap = {
+  [key: string]: any
+}
+
 export const DiscoverItem: React.FC<DiscoverItemProps> = (props: DiscoverItemProps) => {
   const { course } = props;
+  
+  const avatarsMap: AvatarsMap = {
+    'avatar1': avatar1,
+    'avatar2': avatar2,
+    'avatar3': avatar3,
+    'avatar4': avatar4  
+  };
+  
   return (
     <>
       <FlatBottomFrame>
@@ -25,7 +57,7 @@ export const DiscoverItem: React.FC<DiscoverItemProps> = (props: DiscoverItemPro
       <FlatTopFrame style={{ marginBottom: Spacing.XSmall }}>
         <div style={{ flexDirection: 'row', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-            <img src={course.userInfo.avatar} width={Spacing.XLarge} height={Spacing.XLarge} />
+            <img src={avatarsMap[course.userInfo.avatar]} width={Spacing.XLarge} height={Spacing.XLarge} />
             <div style={{ marginLeft: Spacing.Small }}>
               <H4>{course.userInfo.name}</H4>
               <DD>
