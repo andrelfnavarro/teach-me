@@ -54,8 +54,8 @@ export const Header: React.FC<HeaderProps> = (props: HeaderProps) => {
       ) : (
         <HeaderButtonWrapper>
           <Link to='/discover'>Procurar cursos</Link>
-          <Link to='/discover'>Meus cursos</Link>
-          <Link to='/discover'>Histórico de compras</Link>
+          <Link to='/my-courses'>Meus cursos</Link>
+          <Link to='/history'>Histórico de compras</Link>
           <Link onClick={props.user.logout} to='/'>
             Sair
           </Link>

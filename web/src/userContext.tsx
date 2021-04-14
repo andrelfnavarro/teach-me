@@ -8,23 +8,35 @@ interface UserProviderProps {
 
 export interface UserContextProviderProps {
   name: string;
-  profession: string;
+  email: string;
+  university: string;
+  degree: string;
+  avatar: string;
   setName: (e: string) => void;
-  setProfession: (e: string) => void;
+  setEmail: (e: string) => void;
+  setUniversity: (e: string) => void;
+  setDegree: (e: string) => void;
+  setAvatar: (e: string) => void;
   logout: () => void;
 }
 
 export const UserProvider: React.FC<UserProviderProps> = (props: UserProviderProps) => {
   const [name, setName] = useState('');
-  const [profession, setProfession] = useState('');
+  const [email, setEmail] = useState('');
+  const [university, setUniversity] = useState('');
+  const [degree, setDegree] = useState('');
+  const [avatar, setAvatar] = useState('');
 
   const logout = () => {
     setName('');
-    setProfession('');
+    setEmail('');
+    setUniversity('');
+    setDegree('');
+    setAvatar('');
   };
 
   return (
-    <UserContext.Provider value={{ name, profession, setName, setProfession, logout }}>
+    <UserContext.Provider value={{ name, email, university, degree, avatar, setName, setEmail, setUniversity, setDegree, setAvatar, logout }}>
       {props.children}
     </UserContext.Provider>
   );

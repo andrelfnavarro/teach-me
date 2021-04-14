@@ -12,39 +12,18 @@ function getMatchClause(titles) {
     }
 }
 
+function getMatchClauseEmails(emails) {
+    if(emails.length != undefined && emails.length > 0) {
+        return {
+            'userInfo.email': { $in: emails}
+        }
+    }
+    else {
+        return 
+    }
+}
+
 module.exports = {
-
-    // findCoursesByTitle: async (req, res, next) => {
-    //     console.log('CoursesController.findCourses() called!');
-    //     console.log('req query', req.query)
-    //     let Course = mongoose.model('course', CoursesSchema)
-
-        // let titles = []
-        // if(req.query.titles != '{}') {
-        //     for(index in req.query.titles) { 
-        //         titles.push(req.query.titles[index])
-        //     }    
-        // }
-        
-        // const matchClause = getMatchClause(titles)
-
-    //     Course.aggregate([
-    //         {$match: matchClause },
-    //         {
-    //             $group: {
-    //                 '_id':  '$_id' , 
-    //                 'grade': { $first: '$grade' },
-    //                 'price': { $first: '$price' },
-    //                 'quote': { $first: '$quote' },
-    //                 'title': { $first: '$title' },
-    //                 'userInfo': { $first: '$userInfo' },
-    //             }
-    //         }
-    //     ], function(err, result) {
-    //         console.log(result[0])
-    //         res.json(result);
-    //     });
-	// },
 
     findAllCourses: async (req, res, next) => {
         console.log('CoursesController.findAllCourses() called!');
@@ -52,14 +31,12 @@ module.exports = {
         let Course = mongoose.model('courses', CoursesSchema)
 
         Course.find({}, function(err, result) {
-            console.log(result[0])
             res.json(result); 
         });
     },	
 
     findCoursesByTitle: async (req, res, next) => {
         console.log('CoursesController.findAllCourses() called!');
-        console.log('req query', req.query)
         let Course = mongoose.model('courses', CoursesSchema)
 
         let titles = []
@@ -74,42 +51,60 @@ module.exports = {
         if(matchClause != undefined) {
             finalFind = matchClause
         }
-        console.log(finalFind)
 
         Course.find(finalFind, function(err, result) {
-            console.log(result[0])
+            res.json(result); 
+        });
+    },	
+    
+    findCoursesByEmail: async (req, res, next) => {
+        console.log('CoursesController.findAllCourses() called!');
+        let Course = mongoose.model('courses', CoursesSchema)
+
+        let emails = []
+        if(req.query.emails != '{}') {
+            for(index in req.query.emails) { 
+                emails.push(req.query.emails[index])
+            }    
+        }
+        
+        const matchClause = getMatchClauseEmails(emails)
+        let finalFind = {}
+        if(matchClause != undefined) {
+            finalFind = matchClause
+        }
+
+        Course.find(finalFind, function(err, result) {
             res.json(result); 
         });
     },	
 	
-    // createCourses: async (req, res, next) => {
-    //     console.log('CoursesController.createCourses() called!');
+    createCourse: async (req, res, next) => {
+        console.log('CoursesController.createCourse() called!');
 
-    //     const { crewId, id, image, name, userId } = req.query;
+        const { title, quote, price, userInfo } = req.body;
         
-    //     let Member = mongoose.model('course', CoursesSchema)
+        let Course = mongoose.model('courses', CoursesSchema)
 
-    //     const member = new Member(
-    //         { 
-    //             crewId: crewId,
-    //             id: id,
-    //             image: image,
-    //             name: name,
-    //             userId: userId
-    //         }
-    //     )
+        const course = new Course(
+            { 
+                title: title,
+                quote: quote,
+                price: price,
+                grade: ((Math.random() * 1.5) + 3.2).toFixed(1),
+                userInfo: userInfo
+            }
+        )
 
-    //     member.save(function(err, doc) {
-    //         res.json({doc}); 
-    //     });
-    // },
+        course.save(function(err, doc) {
+            res.json({doc}); 
+        });
+    },
 	
-	deleteCourses: async (req, res, next) => {
-        console.log('CoursesController.deleteCourses() called!');
-
-        console.log('id', req.query.id)
+	deleteCourse: async (req, res, next) => {
+        console.log('CoursesController.deleteCourse() called!');
         
-        let Member = mongoose.model('course', CoursesSchema)
+        let Member = mongoose.model('courses', CoursesSchema)
 
         Member.deleteOne( {"_id": req.query.id}, (function(err, doc) {
             if (err) {

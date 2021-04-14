@@ -23,7 +23,10 @@ export const ConditionalLink: React.FC<ConditionalLinkProps> = (props: Condition
         <Button
           onClick={() => {
             user?.setName('Rafael Rahal');
-            user?.setProfession('Engenharia da Computação');
+            user?.setEmail('rafael.rahal@usp.br');
+            user?.setUniversity('POLI USP');
+            user?.setDegree('Engenharia da Computação');
+            user?.setAvatar('avatar5');
           }}
           theme='primary'
           bold

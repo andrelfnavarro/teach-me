@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const bodyParser = require('body-parser')
 
 require('dotenv').config();
 
@@ -28,6 +29,7 @@ app.use(cors());
 
 // Middlewares
 app.use(morgan('dev'));
+app.use(bodyParser.json());
 
 // Routes
 app.use('/api/absenses', require('./routes/absenses'));

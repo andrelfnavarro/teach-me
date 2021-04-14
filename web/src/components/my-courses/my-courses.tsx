@@ -1,34 +1,28 @@
 import React from 'react';
-import { Col, Grid, Row } from 'react-styled-flexboxgrid';
+import { Col, Row } from 'react-styled-flexboxgrid';
 import { Spacing } from 'src/constants';
+import { Button } from 'src/atomic/atm/button/button';
+import { Link as RouterLink } from 'react-router-dom';
 import axios from 'axios';
 
 import { H2 } from 'src/typography';
 import { DiscoverItem } from './my-courses-item';
-import { MultiSelect } from '../select/multi-select';
-import { DISCOVER_ITEMS } from './my-courses-items';
 
 type Props = {
-  
+  user?: any;
 };
 
 type State = {
   discoverItems: CourseObject[];
-  filteredItems: FilterObject[];
-  filterItemsOptions: FilterObject[];
   loaded: boolean;
 };
-
-type FilterObject = {
-  label?: string;
-  value?: string;
-}
 
 type CourseObjectContainer = {
   data: CourseObject[];
 }
 
 type CourseObject = {
+  _id: string;
   title: string;
   quote: string;
   price: number;
@@ -38,16 +32,15 @@ type CourseObject = {
 
 type UserInfoObject = {
   name: string;
+  email: string;
   university: string;
   degree: string;
   avatar: string;
 };
 
-export class Discover extends React.Component<Props, State> {
+export class MyCourses extends React.Component<Props, State> {
   state: State = {
     discoverItems: [],
-    filteredItems: [],
-    filterItemsOptions: [],
     loaded: false
   };
 
@@ -55,69 +48,37 @@ export class Discover extends React.Component<Props, State> {
     this.getDiscoverItems();
   }
 
-  async getDiscoverItems(e: any = undefined) {
-    console.log('CALLING ME');
-    let filtersToUse: any = e;
-    if(e == undefined) {
-      filtersToUse = this.state.filteredItems;
-    }
+  async getDiscoverItems() {
     const parameters = {
-      titles: this.getValues(filtersToUse)
+      emails: [this.props.user.email]
     };
-    console.log('new', parameters);
     
-    const coursesDataContainer: CourseObjectContainer = await axios.get('http://localhost:5000/api/courses/title',
-      { 
-        params: parameters
-      }
-    );
-    
-    const ItemsOptionsContainer: CourseObjectContainer = await axios.get('http://localhost:5000/api/courses/all',
+    const coursesDataContainer: CourseObjectContainer = await axios.get('http://localhost:5000/api/courses/email',
       { 
         params: parameters
       }
     );
 
     const coursesData: CourseObject[] = coursesDataContainer.data;
-    const ItemsOptions: CourseObject[] = ItemsOptionsContainer.data;
-      
-    const seenFilteredItems = new Set();
-    const undefinedIndexes: Array<any> = [];
-    const filterItemsOptions: Array<any> = ItemsOptions.map((item, index) => {
-      if(seenFilteredItems.has(item.title) === false) {
-        seenFilteredItems.add(item.title);
-        return {label: item.title, value: item.title};
-      } else {
-        undefinedIndexes.unshift(index);
-      }
-    });
 
-    undefinedIndexes.forEach(index => {
-      filterItemsOptions.splice(index, 1);
+    this.setState({
+      discoverItems: coursesData,
+      loaded: true,
     });
-
-    if(e == undefined) {
-      this.setState({
-        discoverItems: coursesData,
-        filterItemsOptions: filterItemsOptions,
-        loaded: true
-      });
-    } else {
-      this.setState({
-        discoverItems: coursesData,
-        filterItemsOptions: filterItemsOptions,
-        loaded: true,
-        filteredItems: e
-      });
-    }
   }
 
-  getValues(items: FilterObject[]) {
-    const itemsValues: Array<any> = items.map(item => {
-      return item.value;
-    });
+  async handleDelete(course: CourseObject) {
+    const parameters = {
+      id: course._id
+    };
+      
+    const deleteCourse = await axios.delete('http://localhost:5000/api/courses',
+      { 
+        params: parameters
+      }
+    );
 
-    return itemsValues;
+    this.getDiscoverItems();
   }
 
   render() {
@@ -126,20 +87,10 @@ export class Discover extends React.Component<Props, State> {
         <div style={{ overflowX: 'hidden', overflowY: 'hidden' }}>
           <Row style={{ marginBottom: Spacing.Small }}>
             <Col xsOffset={3} xs={10} md={12} style={{ marginBottom: Spacing.Small }}>
-              <H2>Qual curso você procura?</H2>
-            </Col>
-            <Col xsOffset={3} xs={3} md={5}>
-              <MultiSelect
-                placeholder={'Filtre cursos por nome!'}
-                value={this.state.filteredItems}
-                options={this.state.filterItemsOptions}
-                isMulti={true}
-                isDisabled={false}
-                onChange={(e: any) => {
-                  this.getDiscoverItems(e);
-                }
-                }
-              />
+              {this.props.user.email != '' ? 
+                <H2>Os cursos que você está oferecendo:</H2> : 
+                <H2></H2>
+              }
             </Col>
           </Row>
           <Row center='xs'>
@@ -147,11 +98,29 @@ export class Discover extends React.Component<Props, State> {
               <Row>
                 {this.state.discoverItems.map((course, index) => (
                   <Col key={index} xs={12} md={12}>
-                    <DiscoverItem course={course} />
+                    <DiscoverItem course={course} handleDelete={() => {this.handleDelete(course);}}/>
                   </Col>
                 ))}
               </Row>
             </Col>
+          </Row>
+          <Row>
+            {this.props.user.email != '' ? 
+              <Col xsOffset={3} xs={5} md={6} style={{ marginTop: Spacing.Medium }}>
+                {/* <Button
+                  theme='primary'
+                  bold
+                >
+                  <RouterLink to='create-course' theme='primary' bold>Criar um curso</RouterLink>
+                </Button> */}
+                <RouterLink to='create-course'>
+                  <Button theme='primary' bold>
+                    Criar Curso
+                  </Button>
+                </RouterLink>
+              </Col> :
+              <H2></H2>
+            }
           </Row>
         </div>
       );

@@ -6,10 +6,11 @@ const UsersInfoSchema = require('./UsersInfo');
 const CoursesSchema = new Schema({
     title: {type: String},
     quote: {type: String},
-    price: {type: Number},
+    price: {type: String},
     grade: {type: Number},
     userInfo: {
         name: {type: String},
+        email: {type: String},
         university: {type: String},
         degree: {type: String},
         avatar: {type: String},

@@ -6,10 +6,9 @@ import axios from 'axios';
 import { H2 } from 'src/typography'; 
 import { DiscoverItem } from './history-item';
 import { MultiSelect } from '../select/multi-select';
-import { DISCOVER_ITEMS } from './history-items';
 
 type Props = {
-  
+  user: any;
 };
 
 type State = {
@@ -29,6 +28,7 @@ type CourseObjectContainer = {
 }
 
 type CourseObject = {
+  _id: string;
   title: string;
   quote: string;
   price: number;
@@ -38,21 +38,23 @@ type CourseObject = {
 
 type UserInfoObject = {
   name: string;
+  email: string;
   university: string;
   degree: string;
   avatar: string;
 };
 
-export class Discover extends React.Component<Props, State> {
+export class History extends React.Component<Props, State> {
   state: State = {
     discoverItems: [],
     filteredItems: [],
     filterItemsOptions: [],
-    loaded: false
+    loaded: false,
   };
 
   componentDidMount() {
     this.getDiscoverItems();
+    console.log(this.context);
   }
 
   async getDiscoverItems(e: any = undefined) {
@@ -63,7 +65,6 @@ export class Discover extends React.Component<Props, State> {
     const parameters = {
       titles: this.getValues(filtersToUse)
     };
-    console.log('new', parameters);
     
     const coursesDataContainer: CourseObjectContainer = await axios.get('http://localhost:5000/api/courses/title',
       { 

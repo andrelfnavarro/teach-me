@@ -29,6 +29,7 @@ type CourseObjectContainer = {
 }
 
 type CourseObject = {
+  _id: string;
   title: string;
   quote: string;
   price: number;
@@ -38,6 +39,7 @@ type CourseObject = {
 
 type UserInfoObject = {
   name: string;
+  email: string;
   university: string;
   degree: string;
   avatar: string;

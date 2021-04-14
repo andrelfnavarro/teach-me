@@ -12,14 +12,17 @@ const CoursesController = require('../controllers/courses');
 // router.route('/')
 //     .get(CoursesController.findCourses);
 
-// router.route('/')
-//     .post(CoursesController.createCourses);
-
 router.route('/')
-    .delete(CoursesController.deleteCourses);
+    .delete(CoursesController.deleteCourse);
 
 router.route('/title')
     .get(CoursesController.findCoursesByTitle);
+
+router.route('/email')
+    .get(CoursesController.findCoursesByEmail);
+
+router.route('/')
+    .post(CoursesController.createCourse);
 
 router.route('/all')
     .get(CoursesController.findAllCourses);
