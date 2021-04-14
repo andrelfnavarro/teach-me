@@ -7,7 +7,6 @@ import axios from 'axios';
 import { H2 } from 'src/typography';
 import { DiscoverItem } from './discover-item';
 import { MultiSelect } from '../select/multi-select';
-import { DISCOVER_ITEMS } from './discover-items';
 
 type Props = {
   user?: any;

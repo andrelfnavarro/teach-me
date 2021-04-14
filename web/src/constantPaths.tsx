@@ -1,4 +1,4 @@
 export const url = {
-  backend_host: 'http://localhost:5000'
+  backend_host: 'https://dc3e40d4581e.ngrok.io'
 };
   
