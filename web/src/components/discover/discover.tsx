@@ -1,6 +1,7 @@
 import React from 'react';
 import { Col, Grid, Row } from 'react-styled-flexboxgrid';
 import { Spacing } from 'src/constants';
+import { url } from 'src/constantPaths';
 import axios from 'axios';
 
 import { H2 } from 'src/typography';
@@ -65,15 +66,15 @@ export class Discover extends React.Component<Props, State> {
     const parameters = {
       titles: this.getValues(filtersToUse)
     };
-    console.log('new', parameters);
+    console.log('string', url.backend_host + '/api/courses/title');
     
-    const coursesDataContainer: CourseObjectContainer = await axios.get('http://localhost:5000/api/courses/title',
+    const coursesDataContainer: CourseObjectContainer = await axios.get(url.backend_host + '/api/courses/title',
       { 
         params: parameters
       }
     );
     
-    const ItemsOptionsContainer: CourseObjectContainer = await axios.get('http://localhost:5000/api/courses/all',
+    const ItemsOptionsContainer: CourseObjectContainer = await axios.get(url.backend_host + '/api/courses/all',
       { 
         params: parameters
       }
@@ -128,9 +129,11 @@ export class Discover extends React.Component<Props, State> {
     };
     
     if(this.props.user.email !== '') {
-      const createBuy = await axios.post('http://localhost:5000/api/history',
+      const createBuy = await axios.post(url.backend_host + '/api/history',
         body
       );
+
+      alert('Parabéns, você comprou um curso!');
     }
   }
 

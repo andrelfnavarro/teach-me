@@ -3,6 +3,7 @@ import { Col, Row } from 'react-styled-flexboxgrid';
 import { Spacing } from 'src/constants';
 import { Button } from 'src/atomic/atm/button/button';
 import { Link as RouterLink, Redirect } from 'react-router-dom';
+import { url } from 'src/constantPaths';
 import axios from 'axios';
 
 import { H2 } from 'src/typography';
@@ -59,7 +60,7 @@ export class History extends React.Component<Props, State> {
       emails: [this.props.user.email]
     };
     
-    const coursesDataContainer: CourseObjectContainer = await axios.get('http://localhost:5000/api/history',
+    const coursesDataContainer: CourseObjectContainer = await axios.get(url.backend_host + '/api/history',
       { 
         params: parameters
       }

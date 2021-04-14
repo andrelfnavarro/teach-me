@@ -7,6 +7,7 @@ import { Spacing } from 'src/constants';
 import { H3, H4 } from 'src/typography';
 import { LoginWrapper } from './create-course-styles';
 import { Link as RouterLink, useHistory } from 'react-router-dom';
+import { url } from 'src/constantPaths';
 import axios from 'axios';
 
 
@@ -34,7 +35,7 @@ export const CreateCourse: React.FC<Props> = (props: Props) => {
       }
     };
       
-    await axios.post('http://localhost:5000/api/courses',
+    await axios.post(url.backend_host + '/api/courses',
       body
     );
 
