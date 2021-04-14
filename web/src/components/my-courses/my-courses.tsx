@@ -2,7 +2,7 @@ import React from 'react';
 import { Col, Row } from 'react-styled-flexboxgrid';
 import { Spacing } from 'src/constants';
 import { Button } from 'src/atomic/atm/button/button';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, Redirect } from 'react-router-dom';
 import axios from 'axios';
 
 import { H2 } from 'src/typography';

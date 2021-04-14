@@ -6,7 +6,7 @@ import { TextInput } from 'src/atomic/atm/text-input/text-input';
 import { Spacing } from 'src/constants';
 import { H3, H4 } from 'src/typography';
 import { LoginWrapper } from './create-course-styles';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 
@@ -18,6 +18,7 @@ export const CreateCourse: React.FC<Props> = (props: Props) => {
   const [title, setTitle] = React.useState(null);
   const [quote, setQuote] = React.useState(null);
   const [price, setPrice] = React.useState(null);
+  const history = useHistory();
 
   async function handleCreate() {
     const body = {
@@ -37,6 +38,7 @@ export const CreateCourse: React.FC<Props> = (props: Props) => {
       body
     );
 
+    history.push('my-courses');
   }
 
   return (
@@ -90,11 +92,9 @@ export const CreateCourse: React.FC<Props> = (props: Props) => {
                 </RouterLink>
               </Col>
               <Col xs={6} style={{display: 'flex', justifyContent: 'flex-end'}}>
-                <RouterLink to='my-courses'>
-                  <Button theme='primary' bold onClick={() => handleCreate()}>
-                    Criar Curso
-                  </Button>
-                </RouterLink>
+                <Button theme='primary' bold onClick={() => {handleCreate();}}>
+                  Criar Curso
+                </Button>
               </Col>
             </Row>
           </Frame>
