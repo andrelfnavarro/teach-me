@@ -9,7 +9,7 @@ import { MultiSelect } from '../select/multi-select';
 import { DISCOVER_ITEMS } from './discover-items';
 
 type Props = {
-  
+  user?: any;
 };
 
 type State = {
@@ -121,6 +121,19 @@ export class Discover extends React.Component<Props, State> {
     return itemsValues;
   }
 
+  async handleBuy(course: CourseObject) {
+    const body = {
+      courseInfo: course,
+      email: this.props.user.email
+    };
+    
+    if(this.props.user.email !== '') {
+      const createBuy = await axios.post('http://localhost:5000/api/history',
+        body
+      );
+    }
+  }
+
   render() {
     if(this.state.loaded) {
       return (
@@ -148,7 +161,7 @@ export class Discover extends React.Component<Props, State> {
               <Row>
                 {this.state.discoverItems.map((course, index) => (
                   <Col key={index} xs={12} md={12}>
-                    <DiscoverItem course={course} />
+                    <DiscoverItem course={course} user={this.props.user} handleBuy={() => {this.handleBuy(course);}}/>
                   </Col>
                 ))}
               </Row>

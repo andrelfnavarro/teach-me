@@ -107,12 +107,6 @@ export class MyCourses extends React.Component<Props, State> {
           <Row>
             {this.props.user.email != '' ? 
               <Col xsOffset={3} xs={5} md={6} style={{ marginTop: Spacing.Medium }}>
-                {/* <Button
-                  theme='primary'
-                  bold
-                >
-                  <RouterLink to='create-course' theme='primary' bold>Criar um curso</RouterLink>
-                </Button> */}
                 <RouterLink to='create-course'>
                   <Button theme='primary' bold>
                     Criar Curso

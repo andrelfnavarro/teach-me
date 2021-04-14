@@ -34,6 +34,7 @@ app.use(bodyParser.json());
 // Routes
 app.use('/api/absenses', require('./routes/absenses'));
 app.use('/api/courses', require('./routes/courses'));
+app.use('/api/history', require('./routes/history'));
 app.use('/api/health', require('./routes/health'));
 
 // Start the server

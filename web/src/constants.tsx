@@ -4,6 +4,7 @@ export const Colors = {
   XXDark: '#0D0D0D',
   Gray: '#DFDFE3',
   LightGray: '#d7d7d7',
+  HeavyGray: '#a8a8a8',
 };
 
 export const Spacing = {

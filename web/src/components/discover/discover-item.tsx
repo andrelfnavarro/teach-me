@@ -11,6 +11,8 @@ import avatar5 from 'src/assets/avatar5.png';
 
 interface DiscoverItemProps {
   course: CourseObject;
+  user?: any;
+  handleBuy: () => void;
 }
 
 type CourseObject = {
@@ -35,7 +37,7 @@ type AvatarsMap = {
 }
 
 export const DiscoverItem: React.FC<DiscoverItemProps> = (props: DiscoverItemProps) => {
-  const { course } = props;
+  const { course, user, handleBuy } = props;
   
   const avatarsMap: AvatarsMap = {
     'avatar1': avatar1,
@@ -55,7 +57,10 @@ export const DiscoverItem: React.FC<DiscoverItemProps> = (props: DiscoverItemPro
         </DD>
         <div style={{ width: '100%', justifyContent: 'flex-end', display: 'flex' }}>
           <Button theme='secondary'>Ver detalhes</Button>
-          <Button theme='primary'>Contratar</Button>
+          {(course.userInfo.email != user.email) ? 
+            <Button theme='primary' onClick={handleBuy}>Contratar</Button> :
+            <></>
+          }
         </div>
       </FlatBottomFrame>
       <FlatTopFrame style={{ marginBottom: Spacing.XSmall }}>

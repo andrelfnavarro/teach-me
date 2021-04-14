@@ -22,5 +22,12 @@ export const StyledButton = styled.button<ButtonProps>`
   &:hover  {
     cursor: pointer;
     transform: scale(1.05);
+  };
+  &:disabled {
+    color: ${Colors.Secondary};
+    border-color: ${Colors.HeavyGray};
+    background-color: ${Colors.HeavyGray};
+    cursor: auto;
+    transform: scale(1);
   }
 `;

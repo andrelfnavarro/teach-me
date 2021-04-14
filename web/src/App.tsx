@@ -43,7 +43,7 @@ export const App: React.FC = () => {
         <AppWrapper logged={logged}>
           <Switch>
             <Route path='/discover'>
-              <Discover />
+              <Discover user={user} />
             </Route>
             <Route path='/history'>
               <History user={user} />
